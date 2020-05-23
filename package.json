@@ -1,0 +1,19 @@
+{
+  "name": "shopkart.com_backend",
+  "version": "1.0.0",
+  "description": "backend framework for shopkart.com app UI built on Reactjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vijay431/ShopKart.com_Backend.git"
+  },
+  "author": "Vijay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vijay431/ShopKart.com_Backend/issues"
+  },
+  "homepage": "https://github.com/Vijay431/ShopKart.com_Backend#readme"
+}
