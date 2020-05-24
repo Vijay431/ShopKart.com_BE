@@ -19,11 +19,23 @@ app.use(cors());
 //custom middlewares
 app.use('/auth', Auth);
 // app.use('/cart', Cart);
-// app.use('/products', Products);
+app.use('/products', Products);
+
+//404 Not Found
+app.use((req, res, next) => {
+  const error = new Error('Not Found');
+  error.httpStatusCode = 404;
+  next(error);
+})
 
 //Error handler
-app.use(function(err, req, res, next){
-  res.json({ message: "error" });
+app.use((error, req, res, next) => {
+  res.status(error.httpStatusCode).send({
+    error: {
+      status: error.httpStatusCode || 500,
+      message: error.message
+    }
+  });
 })
 
 //app listening to the PORT
