@@ -18,8 +18,8 @@ const ProductSchema = new mongoose.Schema({
     required: 'required'
   },
   productImage: {
-    type: String,
-    required: 'required'
+    imgdata: Buffer,
+    contentType: String
   }
 })
 
