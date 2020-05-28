@@ -10,6 +10,7 @@ require('./Assets/DB/dbConnection.js');
 const Auth = require('./Router/auth.js');
 const Cart = require('./Router/cart.js');
 const Products = require('./Router/products.js');
+const Shipping = require('./Router/shipping.js');
 
 //middlewares
 app.use(bodyParser.json());
@@ -18,8 +19,9 @@ app.use(cors());
 
 //custom middlewares
 app.use('/auth', Auth);
-// app.use('/cart', Cart);
 app.use('/products', Products);
+app.use('/cart', Cart);
+app.use('/shipping', Shipping);
 
 //404 Not Found
 app.use((req, res, next) => {

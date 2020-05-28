@@ -90,7 +90,7 @@ Router.post('/add', upload.single('productImage'), (req, res, next) =>{
       }
     }
   })
-})
+});
 
 Router.get('/get', (req, res, next) => {
   let category = req.query.category;
@@ -100,40 +100,22 @@ Router.get('/get', (req, res, next) => {
     error.httpStatusCode = 404;
     return next(error);
   }
-
-  if(category == 'All'){
-    Product.find((err, products) => {
-      if(err){
-        const error = new Error('Uh-Oh! Something went Wrong!');
-        return next(error);
+  
+  Product.find({productCategory: category}, (err, products) => {
+    if(err){
+      const error = new Error('Uh-Oh! Something went Wrong!');
+      return next(error);
+    }
+    else{
+      if(products.length != 0){
+        res.json({message: "success", data: products});
       }
       else{
-        if(products.length != 0){
-          res.json({message: "success", data: products});
-        }
-        else{
-          res.json({message: "failure"});
-        }
+        res.json({message: "failure"});
       }
-    })
-  }
-  else{
-    Product.find({productCategory: category}, (err, products) => {
-      if(err){
-        const error = new Error('Uh-Oh! Something went Wrong!');
-        return next(error);
-      }
-      else{
-        if(products.length != 0){
-          res.json({message: "success", data: products});
-        }
-        else{
-          res.json({message: "failure"});
-        }
-      }
-    })
-  }
-})
+    }
+  })
+});
 
 Router.post('/update', upload.single('productImage'), (req, res, next) => {
   let productName = req.body.productName;
@@ -232,6 +214,6 @@ Router.post('/update', upload.single('productImage'), (req, res, next) => {
           }
         })
     }
-})
+});
 
 module.exports = Router;
